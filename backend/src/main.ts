@@ -8,11 +8,23 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   
   // CORS Configuration
-  app.enableCors({
-    origin: 'http://localhost:5174',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-  });
+ const allowedOrigins = [
+  'http://localhost:5174',
+  'https://moafaqaqeed.synerycode.com',
+  'http://moafaqaqeed.synerycode.com',
+];
+
+app.enableCors({ 
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+});
+
   const port = process.env.PORT || 3001;
   await app.listen(port);
   console.log(`Backend is running on: http://localhost:${port}`);
