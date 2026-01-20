@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document , Schema as MongooseSchema} from 'mongoose';
+import { Document, Schema as MongooseSchema } from 'mongoose';
 
 export type PortfolioDocument = Portfolio & Document;
 
@@ -12,7 +12,7 @@ export class Portfolio {
   birthDate?: string; // "01/01/2003"
 
   @Prop()
-  bio: string; // "Fifth-year Informatics student specializing in Software Engineering..."
+  bio: string; // "Recent graduate with a Bachelor's degree in Computer Science..."
 
   @Prop({ required: true })
   phone: string; // "+963968738781"
@@ -31,7 +31,7 @@ export class Portfolio {
     period: String,
     company: String,
     description: [String],
-    link: String
+    link: { type: String, required: false }
   }])
   experience: Array<{
     title: string;
@@ -54,14 +54,21 @@ export class Portfolio {
     description: string[];
   }>;
 
-  @Prop([String])
-  skills: string[]; // ["Node.js", "MongoDB", "Flutter", ...]
+  // التصحيح: استخدام Schema.Types.Mixed للمهارات المنظمة
+  @Prop({ type: MongooseSchema.Types.Mixed })
+  skills: {
+    backend: string[];
+    frontend: string[];
+    databases: string[];
+    programmingLanguages: string[];
+    tools: string[];
+  };
 
   @Prop([{ 
     title: String, 
     description: String,
     technologies: [String],
-    link: String 
+    link: { type: String, required: false }
   }])
   projects: Array<{
     title: string;
@@ -70,7 +77,6 @@ export class Portfolio {
     link?: string;
   }>;
 
- // الحل: تحديد نوع الحقل المعقد باستخدام Schema.Types.Mixed
   @Prop({ type: MongooseSchema.Types.Mixed })
   languages: {
     arabic: string;
@@ -84,7 +90,7 @@ export class Portfolio {
   };
 
   @Prop([String])
-  softSkills: string[]; // ["Team work skills", ...]
+  softSkills: string[];
 }
 
 export const PortfolioSchema = SchemaFactory.createForClass(Portfolio);
