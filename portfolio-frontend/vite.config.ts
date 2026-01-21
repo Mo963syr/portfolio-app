@@ -1,17 +1,24 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+
+//for production
+
+// import { defineConfig } from 'vite';
+// import react from '@vitejs/plugin-react';
+
+// export default defineConfig({
+//   plugins: [react()],
+// });
+
+
+
+// for development
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  base: '/portfolio/',
   plugins: [react()],
   server: {
     port: 5174,
-    host: true,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3001',
-        changeOrigin: true,
-      }
-    }
+    host: true
   }
 });
+// https://vitejs.dev/config/

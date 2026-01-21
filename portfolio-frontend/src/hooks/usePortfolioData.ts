@@ -9,34 +9,25 @@ export const usePortfolioData = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log("🚀 Starting data fetch process...");
-        
-        // تحقق من مسار الطلب
-        console.log("🔍 Fetching from: /api/portfolio");
-        
-       // في usePortfolioData.ts
-const response = await fetch('/api/portfolio', {
-  method: 'GET',
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }
-});
-        
-        console.log("📡 Response status:", response.status);
-        
+        console.log('🚀 Starting data fetch process...');
+
+        const response = await fetch(
+          'https://portfolio-app-q5zn.onrender.com/api/portfolio'
+        );
+        console.log('🚀 تم الاتصال بالخادم بنجاح');
+        console.log('📡 Response status:', response.status);
+
         if (!response.ok) {
-          console.error(`❌ HTTP error! status: ${response.status}`);
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        
+
         const jsonData = await response.json();
-        console.log("✅ Data successfully received:", jsonData);
-        
+        console.log('✅ Data successfully received:', jsonData);
+
         setData(jsonData);
       } catch (err) {
-        console.error("❌ Fetch error details:", err);
-        setError(err instanceof Error ? err.message : 'An error occurred during data fetching');
+        console.error('❌ Fetch error details:', err);
+        setError(err instanceof Error ? err.message : 'Fetch error');
       } finally {
         setLoading(false);
       }

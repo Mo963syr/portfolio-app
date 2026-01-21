@@ -43,13 +43,13 @@ const Home: React.FC<HomeProps> = ({ data }) => {
   </div>
 </motion.div>
           
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
-            {data.name}
-          </h1>
+       <h1 className="text-4xl md:text-6xl font-bold mb-4 md:mb-6 pb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+  {data.name}
+</h1>
           
-          <p className="text-2xl text-blue-200 mb-8">
-            Software Engineering Student
-          </p>
+<p className="text-2xl text-blue-200 mt-2 md:mt-4">
+  Software Engineer
+</p>
           
           <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-12 leading-relaxed">
             {data.bio}
