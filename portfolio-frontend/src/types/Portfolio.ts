@@ -20,7 +20,9 @@ export interface ExperienceItem {
   period: string;
   company: string;
   description: string[];
-  link?: string;
+  link?: string;                // (اختياري) رابط عام للمشروع/الشركة
+  appDownloadUrl?: string;      // ✅ رابط تحميل التطبيق (Google Play / App Store / APK)
+  appDownloadLabel?: string;    // (اختياري) نص الزر مثل "Download App" أو "Android APK"
 }
 
 export interface EducationItem {

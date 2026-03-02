@@ -12,7 +12,7 @@ export const usePortfolioData = () => {
         console.log('🚀 Starting data fetch process...');
 
         const response = await fetch(
-          'https://portfolio-app-q5zn.onrender.com/api/portfolio'
+          'http://api.moafaqaqeed.synerycode.com/portfolio/api/portfolio'
         );
         console.log('🚀 تم الاتصال بالخادم بنجاح');
         console.log('📡 Response status:', response.status);
